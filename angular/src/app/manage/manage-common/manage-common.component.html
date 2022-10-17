@@ -1,0 +1,135 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+  <ng-container *ngIf="loginUserId; else readOnly;">
+    <div class="login-user" [matMenuTriggerFor]="menu">{{ loginUserName }}</div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="logout" (click)="logout()">ログアウト</button>
+    </mat-menu>
+  </ng-container>
+  <ng-template #readOnly>
+    <div class="login-user" [routerLink]="['/manageLogin']">ログイン</div>
+  </ng-template>
+  <button class="ui open button" (click)="openNewWindow('./', 'Main', '')">招待状ページ表示</button>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="side-menu" fixedInViewport="true" fxFlexFill
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-nav-list>
+    <a mat-list-item [routerLink]="['/manageUser']" [disabled]="!loginUserId">ユーザー管理</a>
+    <a mat-list-item [routerLink]="['/manageEvent']">イベント管理</a>
+    <a mat-list-item [routerLink]="['/manageQuestion']">質問管理</a>
+    <a mat-list-item [routerLink]="['/manageSystem']">設定管理</a>
+    <a mat-list-item [routerLink]="['/manageAnswer']">ユーザー回答</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- メイン コンテンツ -->
+    <div class="main">
+      <div class="disp_area">
+        <h1>{{ masterName }}管理</h1>
+        <mat-form-field appearance="standard">
+          <mat-label>filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="絞込キーワード" #input>
+        </mat-form-field>
+        <table class="data-list" mat-table [dataSource]="dataSource" matSort (matSortChange)="sort($event)">
+          <ng-container matColumnDef="{{item.id}}" *ngFor="let item of tableColumnItems; let i = index">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [style.width.px]="item.width">
+                <div class="label-sort">{{ item.label }}</div>
+            </th>
+            <td mat-cell *matCellDef="let row"> {{ row[item.id] | multi:item.pipe:item.pipeParam}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="tableColumnNames"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableColumnNames;" (click)="selectData(row)"
+          [ngClass]="{'target': (row.key == selectedKey && !inputMode)}"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">"{{input.value}}"に一致するデータはありません</td>
+          </tr>
+        </table>
+      </div>
+      <div class="ui info message" *ngIf="infoMessage && !hideInfoMsg">
+        <i class="close icon" (click)="hideInfoMsg = hideInfoMsg ? false : true"></i>
+        {{ infoMessage }}
+      </div>
+
+      <div class="edit_area" *ngIf="!canNotEditFlag">
+        <h1>編集</h1>
+        <div class="ui form edit">
+          <form #myForm="ngForm">
+            <div class="inputRow fields">
+              <div class="field" *ngFor="let item of editData">
+                <ng-container *ngIf="!item.long" >
+                  <label class="title">{{ item.label }}</label>
+                  <ng-container *ngIf="(item.type == 'text' || item.type == 'number')">
+                    <input [type]="item.type" [(ngModel)]="item.value" #itemValid="ngModel" [name]="item.id" [required]="item.primary || item.required" [minlength]="item.minlength" [maxlength]="item.maxlength" [disabled]="item.readOnly" [pattern]="item.pattern" [placeholder]="item.patternExp ? item.patternExp : ''">
+                    <div class="error-message" [hidden]="!itemValid.errors?.['required']">
+                      ※入力必須です
+                    </div>
+                    <div class="error-message" [hidden]="!itemValid.errors?.['minlength']">
+                      ※{{ item.minlength }}文字以上入力して下さい
+                    </div>
+                    <div class="error-message" [hidden]="!itemValid.errors?.['maxlength']">
+                      ※{{ item.maxlength }}文字以内で入力して下さい
+                    </div>
+                    <div class="error-message" [hidden]="!itemValid.errors?.['pattern']">
+                      ※{{ item.patternExp }}で入力してください。
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.type == 'select'">
+                    <select [(ngModel)]="item.value" #itemValid="ngModel" [name]="item.id" [required]="item.primary || item.required" [disabled]="item.readOnly" [disabled]="item.disabled" (ngModelChange)="setDisableId(item)">
+                      <option [value]=""></option>
+                      <option *ngFor="let row of item.list" [value]="row.key">{{ row.str }}</option>
+                    </select>
+                    <div class="error-message" [hidden]="!itemValid.errors?.['required']">
+                      ※選択必須です
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="item.type == 'date'">
+                    <input [(ngModel)]="item.value" matInput #itemValid="ngModel" [name]="item.id" [matDatepicker]="picker" [min]="today" [required]="item.primary || item.required" [disabled]="item.readOnly">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <div class="error-message" [hidden]="!itemValid.errors?.['required']">
+                      ※設定必須です
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+            <div *ngFor="let item of editData">
+              <ng-container *ngIf="(item.type == 'text' && item.long )">
+                <div class="inputRow field">
+                  <label class="title">{{ item.label }}</label>
+                  <input [type]="item.type" [(ngModel)]="item.value" #itemValid="ngModel" [name]="item.id" [required]="item.primary || item.required" [minlength]="item.minlength" [maxlength]="item.maxlength" [disabled]="item.readOnly" [pattern]="item.pattern" [placeholder]="item.patternExp ? item.patternExp : ''">
+                  <div class="error-message" [hidden]="!itemValid.errors?.['required']">
+                    ※入力必須です
+                  </div>
+                  <div class="error-message" [hidden]="!itemValid.errors?.['minlength']">
+                    ※{{ item.minlength }}文字以上入力して下さい
+                  </div>
+                  <div class="error-message" [hidden]="!itemValid.errors?.['maxlength']">
+                    ※{{ item.maxlength }}文字以内で入力して下さい
+                  </div>
+                  <div class="error-message" [hidden]="!itemValid.errors?.['pattern']">
+                    ※{{ item.patternExp }}で入力してください。
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </form>
+        </div>
+        <div *ngIf="loginUserId">
+          <button class="ui primary right floated button" *ngIf="inputMode" [disabled]="myForm.invalid" (click)="registData()">登録</button>
+          <button class="ui primary right floated button" *ngIf="!inputMode" [disabled]="myForm.invalid" (click)="updateData()">更新</button>
+          <button class="ui right floated button" *ngIf="!inputMode" (click)="deleteData()">削除</button>
+          <button class="ui right floated button" *ngIf="inputMode" (click)="initializeEditData()">クリア</button>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

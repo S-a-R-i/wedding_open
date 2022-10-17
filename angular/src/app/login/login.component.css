@@ -1,0 +1,190 @@
+.content-area {
+  position: fixed;
+  background-color: rgb(252, 249, 246);
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+}
+
+h2, label, .btm-message{
+  color: rgb(135 120 99);
+}
+/* 背景 */
+.content-area > div {
+  display: flex;
+  text-align: center;
+}
+h2 {
+  font-family: 'Monotype Corsiva', 'Great Vibes', cursive;
+  font-size: 5rem;
+  position: relative;
+  text-align: center;
+}
+
+.login_back_img {
+  background: none;
+}
+.login_back_img::before {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+.pc_img1::before {
+  content: "";
+  background: url('../../assets/login/login-back-pc.jpg');
+  rotate: 180deg;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+}
+.sp_img1::before {
+  content: "";
+  background: url('../../assets/login/login-back-sp.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+}
+
+/* フォーム入力欄 */
+.form {
+  margin: auto;
+  width: fit-content;
+  z-index: 1;
+}
+.form1 {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.form1 > div {
+  width: 100%;
+}
+label, .btm-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.btm-message {
+  margin: 2rem 0;
+  text-align: center;
+  font-weight: bold;
+}
+.message .text {
+  line-height: 2.5;
+  font-size: 1.2rem;
+}
+
+/* 花 */
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+.back-circle {
+  position: relative;
+  width: 720px;
+  height: 720px;
+  margin-bottom: auto;
+  margin-right: auto;
+}
+.lfloat {
+  width: 120px;
+  height: 120px;
+}
+.lfloat:hover, .lfloat:active {
+  scale: 1.2 !important;
+}
+.lfloat1 { left: 0 }
+.lfloat2, .lfloat8 { left: 90px; }
+.lfloat3, .lfloat7 { left: 300px; }
+.lfloat4, .lfloat6 { left: 510px; }
+.lfloat5 { left: 600px; }
+
+.lfloat3 { top: 0; }
+.lfloat2, .lfloat4 { top: 90px; }
+.lfloat1, .lfloat5 { top: 300px; }
+.lfloat6, .lfloat8 { top: 510px; }
+.lfloat7 { top: 600px; }
+
+/* .frower-shower {
+  position: absolute;
+}
+.shower {
+  margin-top: -20%;
+}
+.shower div {
+  width: 150px;
+  height: 150px;
+}
+.shower .img:nth-child(1) {left: 0;}
+.shower .img:nth-child(2) {left: 10%;}
+.shower .img:nth-child(3) {left: 20%;}
+.shower .img:nth-child(4) {left: 30%;}
+.shower .img:nth-child(5) {left: 40%;}
+.shower .img:nth-child(6) {left: 50;}
+.shower .img:nth-child(7) {left: 60%;}
+.shower .img:nth-child(8) {left: 70%;}
+.shower .img:nth-child(9) {left: 80%;}
+.shower .img:nth-child(10) {left: 95%;} */
+
+.flower1, .s-flower1 .img:nth-child(2), .s-flower1 .img:nth-child(6), .s-flower1 .img:nth-child(9)
+ { background: url('../../assets/login/ranankyurasu_yerrow1.png'); background-size: cover; }
+.flower2, .s-flower2 .img:nth-child(2), .s-flower2 .img:nth-child(6), .s-flower2 .img:nth-child(9)
+ { background: url('../../assets/login/bara_redwhite1.png'); background-size: cover; }
+.flower3, .s-flower3 .img:nth-child(2), .s-flower3 .img:nth-child(6), .s-flower3 .img:nth-child(9)
+ { background: url('../../assets/login/bara_white1.png'); background-size: cover; }
+.flower4, .s-flower4 .img:nth-child(2), .s-flower4 .img:nth-child(6), .s-flower4 .img:nth-child(9)
+ { background: url('../../assets/login/botan_red1.png'); background-size: cover; }
+.flower5, .s-flower5 .img:nth-child(2), .s-flower5 .img:nth-child(6), .s-flower5 .img:nth-child(9)
+ { background: url('../../assets/login/ranankyurasu_orange1.png'); background-size: cover; }
+.flower6, .s-flower6 .img:nth-child(2), .s-flower6 .img:nth-child(6), .s-flower6 .img:nth-child(9)
+ { background: url('../../assets/login/bara_pink1.png'); background-size: cover; }
+.s-flower1 .img:nth-child(1), .s-flower1 .img:nth-child(4), .s-flower1 .img:nth-child(7), .s-flower1 .img:nth-child(10)
+ { background: url('../../assets/login/ranankyurasu_yerrow2.png'); background-size: cover; }
+.s-flower1 .img:nth-child(3), .s-flower1 .img:nth-child(5), .s-flower1 .img:nth-child(8)
+ { background: url('../../assets/login/ranankyurasu_yerrow3.png'); background-size: cover; }
+.s-flower2 .img:nth-child(1), .s-flower2 .img:nth-child(4), .s-flower2 .img:nth-child(7), .s-flower2 .img:nth-child(10)
+ { background: url('../../assets/login/bara_redwhite2.png'); background-size: cover; }
+.s-flower2 .img:nth-child(3), .s-flower2 .img:nth-child(5), .s-flower2 .img:nth-child(8)
+ { background: url('../../assets/login/bara_redwhite2.png'); background-size: cover; }
+.s-flower3 .img:nth-child(1), .s-flower3 .img:nth-child(4), .s-flower3 .img:nth-child(7), .s-flower3 .img:nth-child(10)
+ { background: url('../../assets/login/bara_white2.png'); background-size: cover; }
+.s-flower3 .img:nth-child(3), .s-flower3 .img:nth-child(5), .s-flower3 .img:nth-child(8)
+ { background: url('../../assets/login/bara_white3.png'); background-size: cover; }
+.s-flower4 .img:nth-child(1), .s-flower4 .img:nth-child(4), .s-flower4 .img:nth-child(7), .s-flower4 .img:nth-child(10)
+ { background: url('../../assets/login/botan_red2.png'); background-size: cover; }
+.s-flower4 .img:nth-child(3), .s-flower4 .img:nth-child(5), .s-flower4 .img:nth-child(8)
+ { background: url('../../assets/login/botan_red3.png'); background-size: cover; }
+.s-flower5 .img:nth-child(1), .s-flower5 .img:nth-child(4), .s-flower5 .img:nth-child(7), .s-flower5 .img:nth-child(10)
+ { background: url('../../assets/login/ranankyurasu_orange2.png'); background-size: cover; }
+.s-flower5 .img:nth-child(3), .s-flower5 .img:nth-child(5), .s-flower5 .img:nth-child(8)
+ { background: url('../../assets/login/ranankyurasu_orange3.png'); background-size: cover; }
+.s-flower6 .img:nth-child(1), .s-flower6 .img:nth-child(4), .s-flower6 .img:nth-child(7), .s-flower6 .img:nth-child(10)
+ { background: url('../../assets/login/bara_pink2.png'); background-size: cover; }
+.s-flower6 .img:nth-child(3), .s-flower6 .img:nth-child(5), .s-flower6 .img:nth-child(8)
+ { background: url('../../assets/login/bara_pink3.png'); background-size: cover; }
+
+@media screen and (max-width: 767px) {
+  .message .text {
+    line-height: 2.2;
+    font-size: 1rem;
+  }
+  .form {
+    width: calc(100vw - 4rem);
+  }
+  .back-circle {
+    width: 700px;
+    height: 700px;
+  }
+}

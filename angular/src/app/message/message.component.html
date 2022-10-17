@@ -1,0 +1,7 @@
+<mat-dialog-content>
+  <span></span>{{ message }}
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close="OK" cdkFocusInitial>OK</button>
+  <button mat-button mat-dialog-close="CANCEL" *ngIf="data.type == 'confirm'">キャンセル</button>
+</mat-dialog-actions>

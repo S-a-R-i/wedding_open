@@ -1,0 +1,44 @@
+<div class="content-area">
+  <form #myForm="ngForm">
+    <h1>ログイン</h1>
+    <h2><span>せい</span>と<span>めい</span>を<span>ひらがな</span>で入力してください</h2>
+    <div class="input_form form1">
+      <div>
+        <label>せい</label>
+        <input id="family_name" name="family_name" [(ngModel)]="user.family_name" type="text" maxlength="10" required pattern="^[ぁ-ん]*$" #familyNameValid="ngModel">
+        <div class="error-message" [hidden]="!familyNameValid.errors?.['maxlength']">※10文字以内で入力してください。</div>
+        <div class="error-message" [hidden]="!familyNameValid.errors?.['pattern']">※ひらがなで入力してください。</div>
+      </div>
+      <div>
+        <label>めい</label>
+        <input id="first_name" name="first_name" [(ngModel)]="user.first_name" type="text" maxlength="10" required pattern="^[ぁ-ん]*$" #firstNameValid="ngModel">
+        <div class="error-message" [hidden]="!firstNameValid.errors?.['maxlength']">※10文字以内で入力してください。</div>
+        <div class="error-message" [hidden]="!firstNameValid.errors?.['pattern']">※ひらがなで入力してください。</div>
+      </div>
+    </div>
+    <h2>パスワードを<span>8桁以上</span>の<span>英数字</span>で入力してください</h2>
+    <div class="input_form form2">
+      <label>パスワード</label>
+      <div class="password">
+        <input id="password" name="password" [(ngModel)]="user.password" [type]="showPassword ? 'text' : 'password'" maxlength="20" minlength="8" required pattern="^[0-9a-zA-Z]*$" #passwordValid="ngModel" placeholder="8桁以上の英数字">
+        <i class="ui eye icon" [ngClass]="{'slash': showPassword}" (click)="showPassword = showPassword ? false : true"></i>
+      </div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['maxlength']">※30文字以内で入力してください。</div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['minlength']">※8文字以上で入力してください。</div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['pattern']">※半角英数字で入力してください。</div>
+    </div>
+    <div class="ui warning message" *ngIf="status === 1 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+      パスワードが正しくありません。
+    </div>
+    <div class="ui warning message" *ngIf="status === 2 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+      未登録のユーザーです。
+    </div>
+    <div class="ui warning message" *ngIf="status === 3 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+      権限がありません。
+    </div>
+    <button class="ui manageLogin button" (click)="login()" [disabled]="myForm.invalid">ログイン</button>
+  </form>
+</div>

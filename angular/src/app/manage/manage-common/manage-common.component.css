@@ -1,0 +1,80 @@
+/* ツールバー */
+.mat-toolbar {
+  height: 56px;
+  color:rgb(3, 39, 71);
+  background: linear-gradient(25deg, rgb(184 181 229), rgb(185, 220, 250));
+}
+.side-menu {
+  top:56px !important;
+}
+mat-sidenav-container {
+  height: calc(100vh - 56px);
+}
+.login-user {
+  margin: 0 2rem;
+  color: white;
+}
+.logout {
+  color: rgb(184 181 229);
+}
+.open {
+  border-radius: 2rem;
+  background: linear-gradient(25deg, rgb(249, 176, 210), rgb(255, 199, 120));
+  margin: 0 0 0 auto;
+}
+.open:hover {
+  background: linear-gradient(25deg, rgb(201, 143, 170), rgb(190, 149, 91));
+}
+/* コンテンツ */
+.main {
+  margin: 2rem;
+}
+
+table {
+  width: 100%;
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+tr.target {
+  background: rgb(224 239 253) !important;
+}
+
+/* 編集エリア */
+.edit_area {
+  margin-top: 3rem;
+  margin-bottom: 100px;
+}
+
+.form {
+  background-color: rgb(224 239 253);
+  padding: 1.5rem 0;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.inputRow {
+  margin: 0 1rem !important;
+}
+.field {
+  position: relative;
+}
+mat-datepicker-toggle{
+  position: absolute;
+  top: 1.5rem;
+  right: -1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .login-user {
+    margin: 0 0.5rem 0 0;
+    font-size: 1rem;
+  }
+  .logout {
+    margin-right: 1rem;
+  }
+}

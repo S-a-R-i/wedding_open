@@ -1,0 +1,33 @@
+.content-area {
+  justify-content: center;
+  display: flex;
+
+}
+.content-area form {
+  margin: 10% 20%;
+  width: fit-content;
+}
+
+span {
+  color: rgb(103 151 193);
+}
+
+.input_form {
+  margin-left:1rem;
+  margin-bottom: 3rem;
+}
+.form1 {
+  display: flex;
+}
+
+.manageLogin {
+  margin: 5px 0;
+  width: 100%;
+}
+.manageLogin, .manageLogin:disabled {
+  background-image: linear-gradient(25deg, rgb(184 181 229), rgb(185, 220, 250));
+}
+.manageLogin:hover, .manageLogin:active{
+  background-image: linear-gradient(25deg, rgb(160, 157, 199), rgb(159, 189, 214));
+}
+

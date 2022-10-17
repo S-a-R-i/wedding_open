@@ -1,0 +1,64 @@
+
+<div class="content-area">
+  <div class="img login_back_img" [ngClass]="{'pc_img1': !isWindowNarrow, 'sp_img1': isWindowNarrow}"></div>
+  <div class="back">
+    <div class="back-circle lfloat-circle" [style.margin-left]="leftWidth" [style.margin-right]="isWindowNarrow ? leftWidth : 'auto'" [style.margin-top]="topHeight">
+      <div class="img lfloat flower1 lfloat1 rotate1" (click)="login()" ></div>
+      <div class="img lfloat flower2 lfloat2 rotate2" (click)="login()" ></div>
+      <div class="img lfloat flower3 lfloat3 rotate1" (click)="login()" ></div>
+      <div class="img lfloat flower4 lfloat4 rotate2" (click)="login()" ></div>
+      <div class="img lfloat flower5 lfloat5 rotate1" (click)="login()" ></div>
+      <div class="img lfloat flower6 lfloat6 rotate2" (click)="login()" ></div>
+      <div class="img lfloat flower2 lfloat7 rotate1" (click)="login()" ></div>
+      <div class="img lfloat flower5 lfloat8 rotate2" (click)="login()" ></div>
+    </div>
+  </div>
+  <div class="top"></div>
+  <form #myForm="ngForm" class="form">
+    <h2>Welcome</h2>
+    <div class="input_form form1">
+      <div>
+        <label>せい</label>
+        <input id="family_name" name="family_name" [(ngModel)]="user.family_name" type="text" maxlength="10" required pattern="^[ぁ-ん]*$" #familyNameValid="ngModel" placeholder="ひらがな">
+        <div class="error-message" [hidden]="!familyNameValid.errors?.['maxlength']">※10文字以内で入力してください。</div>
+        <div class="error-message" [hidden]="!familyNameValid.errors?.['pattern']">※ひらがなで入力してください。</div>
+      </div>
+      <div>
+        <label>めい</label>
+        <input id="first_name" name="first_name" [(ngModel)]="user.first_name" type="text" maxlength="10" required pattern="^[ぁ-ん]*$" #firstNameValid="ngModel" placeholder="ひらがな">
+        <div class="error-message" [hidden]="!firstNameValid.errors?.['maxlength']">※10文字以内で入力してください。</div>
+        <div class="error-message" [hidden]="!firstNameValid.errors?.['pattern']">※ひらがなで入力してください。</div>
+      </div>
+    </div>
+     <div class="input_form form2">
+      <label>パスワード</label>
+      <div class="password">
+        <input id="password" name="password" [(ngModel)]="user.password" [type]="showPassword ? 'text' : 'password'" maxlength="20" minlength="8" required pattern="^[0-9a-zA-Z]*$" #passwordValid="ngModel" placeholder="8桁以上の英数字">
+        <i class="ui eye icon" [ngClass]="{'slash': showPassword}" (click)="showPassword = showPassword ? false : true"></i>
+      </div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['maxlength']">※30文字以内で入力してください。</div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['minlength']">※8文字以上で入力してください。</div>
+      <div class="error-message" [hidden]="!passwordValid.errors?.['pattern']">※半角英数字で入力してください。</div>
+    </div>
+    <div class="ui warning message" *ngIf="status === 1 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+      パスワードが正しくありません。
+    </div>
+    <div class="ui warning message" *ngIf="status === 2 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+      未登録のユーザーです。
+    </div>
+    <div class="ui warning message" *ngIf="status === 4 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+        正しく入力してください。
+    </div>
+    <div class="ui warning message" *ngIf="status === 3 && !hideWarnMsg">
+      <i class="close icon" (click)="hideWarnMsg = hideWarnMsg ? false : true"></i>
+        権限がありません。
+    </div>
+    <div class="btm-message">入力したら好きなお花をタップしてください</div>
+  </form>
+</div>
+<div class="loader-wrap" [ngClass]="{'loaded': loaded}">
+  <div class="loader"></div>
+</div>
