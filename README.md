@@ -23,9 +23,11 @@
 <br>
 
 
-__<span style="color: red;">現在iosでの表示で、背景画像が拡大されてしまう・パララックス表示が正しく表示されないという不具合を確認しています。</span>__
-__<span style="color: red;">鋭意改修中です。</span>__
-__<span style="color: red;">android、windowsでは動作確認済みです。</span>__
+__<span style="color: red">現在iosでの表示で、背景画像が拡大されてしまう・パララックス表示が正しく表示されないという不具合を確認しています。</span>__
+
+__<span style="color: red">鋭意改修中です。</span>__
+
+__<span style="color: red">android、windowsでは動作確認済みです。</span>__
 
 <br>
 
