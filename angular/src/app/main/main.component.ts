@@ -9,7 +9,7 @@ import { ContentChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangePwComponent } from './change-pw/change-pw.component';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main',
@@ -54,6 +54,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     private commonService: CommonService,
     public matDialog: MatDialog,
     private route: ActivatedRoute,
+    private router: Router,
   ){
     this.loginUserId = this.loginService.getUserId();
     this.loginUserName = this.loginService.getUserName();
@@ -67,7 +68,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     document.addEventListener('touchmove', this.noScroll, {passive: false});
     document.addEventListener('wheel', this.noScroll, {passive: false});
-    this.isWindowNarrow = (window.innerWidth <= 767);
+    this.isWindowNarrow = (window.innerWidth <= 767 || navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0);
     this.closeMenuFlag = this.isWindowNarrow;
     gsap.registerPlugin(ScrollTrigger);
 
@@ -240,7 +241,15 @@ export class MainComponent implements OnInit, AfterViewInit {
   }
 
   public logout() {
-    this.loginService.logout();
+    if ( this.isTest && !this.isOnlyReport ) {
+      // テストイベントユーザーで表示した場合(ポートフォリオ確認用)
+      this.loginUserId = '';
+      this.loginUserName = '';
+      this.eventId = '';
+      this.router.navigate(['']);
+    } else {
+      this.loginService.logout();
+    }
   }
 
   private initAnimation() {

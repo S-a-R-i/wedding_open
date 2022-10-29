@@ -134,6 +134,7 @@ __<span style="color: red">android、windowsでは動作確認済みです。</s
 - ログイン状態保持
 - 管理画面のpipe作成
 - googleマップの表示修正
+- パスワード変更画面作成
 
 
 ## ER図

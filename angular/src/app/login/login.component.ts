@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     gsap.registerPlugin(ScrollTrigger);
-    this.isWindowNarrow = (window.innerWidth <= 767);
+    this.isWindowNarrow = (window.innerWidth <= 767 || navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('Android') > 0);
     const harfFlowerWidth = this.isWindowNarrow ? 350 : 360;
     this.leftWidth = String(document.documentElement.clientWidth / 2 - harfFlowerWidth) + 'px';
     this.topHeight = String(document.documentElement.clientHeight / 2 - harfFlowerWidth) + 'px';
