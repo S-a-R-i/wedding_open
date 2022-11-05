@@ -2,7 +2,7 @@
 
 ## URL
 
-**[招待状画面(テストイベント参加ユーザーの表示)](https://wedding-front.herokuapp.com/#/main?isTest=true)**
+<!-- **[招待状画面(テストイベント参加ユーザーの表示)](https://wedding-front.herokuapp.com/#/main?isTest=true)** -->
 
  >
  >イベント参加ユーザーでログインすることにより、ページ最下部エリアが **Event(参加イベントの詳細)**　となります。
@@ -12,23 +12,18 @@
  >
  >※報告のみユーザーの場合は、ページ最下部エリアが **Sincerely(締めの挨拶)** となります。
  >
- >**[招待状画面(報告のみユーザーの表示)](https://wedding-front.herokuapp.com/#/main?onlyRepo=true&&isTest=true)**
+<!--  >**[招待状画面(報告のみユーザーの表示)](https://wedding-front.herokuapp.com/#/main?onlyRepo=true&&isTest=true)** -->
  >
  >上記URLからの遷移時は、デフォルトで報告のみユーザーとなります。
 
 <br>
 
-**[管理画面](https://wedding-front.herokuapp.com/#/manageQuestion)**
+<!-- **[管理画面](https://wedding-front.herokuapp.com/#/manageQuestion)** -->
  >管理ユーザーでログインすることにより、ユーザー管理画面の表示、各画面のデータ操作が可能になる
 <br>
 
 
-__<span style="color: red">現在iosでの表示で、背景画像が拡大されてしまう・パララックス表示が正しく表示されないという不具合を確認しています。</span>__
-
-__<span style="color: red">鋭意改修中です。</span>__
-
-__<span style="color: red">android、windowsでは動作確認済みです。</span>__
-
+__<span style="color: red">一時的にページアクセス不可としています。</span>__
 <br>
 
 ## イメージ図
